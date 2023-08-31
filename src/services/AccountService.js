@@ -31,8 +31,41 @@ const createAccount = async (req, res) => {
   }
 };
 
+const getAccount = async (req, res) => {
+  try {
+    const accountNumber = req.params.accountNumber;
+
+    const account = await Account.findOne({
+      where: { accountNumber: accountNumber },
+    });
+
+    if (account === null) {
+      const response = {
+        message: `Account ${accountNumber} does not exist`,
+      };
+
+      return res.status(404).json(response);
+    }
+    const response = {
+      accountName: account.accountName,
+      accountNumber: account.accountNumber,
+      dob: account.DOB,
+      accountType: account.accountType,
+      initialBalance: account.initialBalance,
+    };
+
+    return res.status(200).send(response);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      message: "Internal Server Error",
+    });
+  }
+};
+
 const acctService = {
   createAccount: createAccount,
+  getAccount: getAccount,
 };
 
 module.exports = acctService;
