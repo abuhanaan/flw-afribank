@@ -26,7 +26,7 @@ module.exports = {
       bigNumberStrings: true,
     },
   },
-  production: {
+  prod: {
     username: process.env.PROD_DB_USERNAME,
     password: process.env.PROD_DB_PASSWORD,
     database: process.env.PROD_DB_NAME,
