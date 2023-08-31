@@ -1,3 +1,8 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
+console.log(process.env.DB_PASSWORD);
+
 const fs = require("fs");
 
 module.exports = {
@@ -5,21 +10,36 @@ module.exports = {
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    host: "127.0.0.1",
+    host: process.env.DB_HOST,
+    port: 3306,
     dialect: "mysql",
+    dialectOptions: {
+      bigNumberStrings: true,
+    },
   },
   test: {
-    username: "root",
-    password: null,
-    database: "database_test",
+    username: process.env.CI_DB_USERNAME,
+    password: process.env.CI_DB_PASSWORD,
+    database: process.env.CI_DB_NAME,
     host: "127.0.0.1",
+    port: 3306,
     dialect: "mysql",
+    dialectOptions: {
+      bigNumberStrings: true,
+    },
   },
   production: {
-    username: "root",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
+    username: process.env.PROD_DB_USERNAME,
+    password: process.env.PROD_DB_PASSWORD,
+    database: process.env.PROD_DB_NAME,
+    host: process.env.PROD_DB_HOSTNAME,
+    port: process.env.PROD_DB_PORT,
     dialect: "mysql",
+    dialectOptions: {
+      bigNumberStrings: true,
+      ssl: {
+        ca: fs.readFileSync(__dirname + "/mysql-ca-main.crt"),
+      },
+    },
   },
 };
