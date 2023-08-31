@@ -1,8 +1,6 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
-console.log(process.env.DB_PASSWORD);
-
 const fs = require("fs");
 
 module.exports = {
