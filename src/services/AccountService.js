@@ -19,7 +19,7 @@ const createAccount = async (req, res) => {
       accountNumber: newAccount.accountNumber,
       DOB: newAccount.DOB,
       accountType: newAccount.accountType,
-      initialBalance: newAccount.initialBalance,
+      initialBalance: parseInt(newAccount.initialBalance),
     };
 
     return res.status(201).send(response);
