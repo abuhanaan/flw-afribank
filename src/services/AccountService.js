@@ -6,26 +6,41 @@ const createAccount = async (req, res) => {
     const { accountName, dob, accountType, initialBalance } = req.body;
     const newAccountNumber = generateAcctNo();
     // const existingAcct = await Account.findOne({where: {accountNumber: newAccountNumber}})
-    const newAccount = await Account.create({
+    await Account.create({
       accountName: accountName.toUpperCase(),
       accountNumber: newAccountNumber,
       DOB: dob,
       accountType: accountType.toUpperCase(),
-      initialBalance: initialBalance,
-    });
+      initialBalance: parseInt(initialBalance),
+    })
+      .then((newAccount) => {
+        const response = {
+          success: true,
+          status: "Account created successfully",
+          data: {
+            accountName: newAccount.accountName,
+            accountNumber: newAccount.accountNumber,
+            DOB: newAccount.DOB,
+            accountType: newAccount.accountType,
+            initialBalance: newAccount.initialBalance,
+          },
+        };
 
-    const response = {
-      accountName: newAccount.accountName,
-      accountNumber: newAccount.accountNumber,
-      DOB: newAccount.DOB,
-      accountType: newAccount.accountType,
-      initialBalance: parseInt(newAccount.initialBalance),
-    };
-
-    return res.status(201).send(response);
+        return res.status(201).send(response);
+      })
+      .catch((error) => {
+        console.log(error);
+        return res.status(400).send({
+          success: false,
+          status: "Account creation failed",
+          message: error.parent.sqlMessage,
+        });
+      });
   } catch (error) {
-    console.log(error);
+    console.log({ error: error.name });
     return res.status(500).send({
+      success: false,
+      status: "Account creation failed",
       message: "Internal Server Error",
     });
   }
@@ -41,23 +56,32 @@ const getAccount = async (req, res) => {
 
     if (account === null) {
       const response = {
+        success: false,
+        status: "Not Found",
         message: `Account ${accountNumber} does not exist`,
       };
 
       return res.status(404).json(response);
     }
     const response = {
-      accountName: account.accountName,
-      accountNumber: account.accountNumber,
-      dob: account.DOB,
-      accountType: account.accountType,
-      initialBalance: account.initialBalance,
+      success: true,
+      status: "Fetched",
+      message: "Account Retrieved Successfully",
+      data: {
+        accountName: account.accountName,
+        accountNumber: account.accountNumber,
+        dob: account.DOB,
+        accountType: account.accountType,
+        initialBalance: account.initialBalance,
+      },
     };
 
     return res.status(200).send(response);
   } catch (error) {
     console.log(error);
     return res.status(500).send({
+      success: false,
+      status: "Account Retrieval Failed",
       message: "Internal Server Error",
     });
   }
@@ -77,13 +101,16 @@ const getAllAccounts = async (req, res) => {
     });
 
     const response = {
-      status: true,
+      success: true,
+      status: "Accounts Retrieved Successfully",
       data: filteredAccounts,
     };
     return res.status(200).send(response);
   } catch (error) {
     console.log(error);
     return res.status(500).send({
+      success: false,
+      status: "Account Retrieval Failed",
       message: "Internal Server Error",
     });
   }
