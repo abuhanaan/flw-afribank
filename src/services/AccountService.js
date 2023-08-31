@@ -63,9 +63,36 @@ const getAccount = async (req, res) => {
   }
 };
 
+const getAllAccounts = async (req, res) => {
+  try {
+    const accounts = await Account.findAll();
+    const filteredAccounts = accounts.map((account) => {
+      return {
+        accountName: account.accountName,
+        accountNumber: account.accountNumber,
+        dob: account.DOB,
+        accountType: account.accountType,
+        initialBalance: account.initialBalance,
+      };
+    });
+
+    const response = {
+      status: true,
+      data: filteredAccounts,
+    };
+    return res.status(200).send(response);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      message: "Internal Server Error",
+    });
+  }
+};
+
 const acctService = {
   createAccount: createAccount,
   getAccount: getAccount,
+  getAllAccounts: getAllAccounts,
 };
 
 module.exports = acctService;
