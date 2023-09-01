@@ -17,7 +17,7 @@ const Account = sequelize.define("accounts", {
     allowNull: false,
   },
   accountNumber: {
-    type: Sequelize.TEXT,
+    type: Sequelize.STRING,
     allowNull: false,
     unique: true,
   },
