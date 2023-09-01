@@ -14,7 +14,7 @@ The following steps are to be followed to set up the web server locally
 
 ## API Reference/Documentation
 
-- Baseurl:
+- Baseurl: https://tiny-lime-blackbuck-gown.cyclic.app
 
 ---
 
@@ -51,7 +51,7 @@ The API will return these error types when requests fail:
 - Sample Request:
 
 ```json
-POST {baseUrl}/accounts
+POST https://tiny-lime-blackbuck-gown.cyclic.app/accounts
 Content-Type: application/json
 
 {
@@ -60,7 +60,7 @@ Content-Type: application/json
     "dob": "2000-05-15",
     "accountType": "Savings",
     "initialBalance": "1500"
-}
+    }
 }
 ```
 
@@ -88,7 +88,7 @@ Content-Type: application/json
   - Request Arguments: accountNumber (account fo the account to be resolved)
 
   ```json
-  GET https://uptick-note-app.cyclic.app/api/v1/accounts/9947692628
+  GET https://tiny-lime-blackbuck-gown.cyclic.app/api/v1/accounts/9947692628
   ```
 
   - Sample Response:
@@ -116,7 +116,7 @@ Content-Type: application/json
   - Request Arguments: None
 
   ```json
-  GET https://uptick-note-app.cyclic.app/api/v1/accounts
+  GET https://tiny-lime-blackbuck-gown.cyclic.app/api/v1/accounts
   ```
 
   - Sample Response:
