@@ -1,4 +1,5 @@
-const { Account } = require("../models");
+const sequelize = require("../db/connect");
+const Account = require("../models/account");
 const { generateAcctNo } = require("../utils/generateAccNo");
 
 const createAccount = async (req, res) => {
@@ -37,7 +38,7 @@ const createAccount = async (req, res) => {
         });
       });
   } catch (error) {
-    console.log({ error: error.name });
+    console.log({ error: error });
     return res.status(500).send({
       success: false,
       status: "Account creation failed",
