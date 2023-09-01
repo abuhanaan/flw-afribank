@@ -15,11 +15,11 @@ const Account = sequelize.define("accounts", {
   accountType: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
   },
   accountNumber: {
     type: Sequelize.TEXT,
     allowNull: false,
+    unique: true,
   },
   DOB: {
     type: Sequelize.DATE,
