@@ -19,6 +19,6 @@ async function startDatabase() {
 }
 
 app.listen(port, async () => {
-  startDatabase();
+  // startDatabase();
   console.log("Server is up on port " + port);
 });
