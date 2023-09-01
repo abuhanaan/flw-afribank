@@ -82,10 +82,10 @@ Content-Type: application/json
 - General
 
   - Fetches an account by accountNumber
-  - Request Arguments: accountNumber (account fo the account to be resolved)
+  - Request Arguments: accountNumber (account number of the account to be resolved)
 
   ```json
-  GET https://flw-afribank.cyclic.app/api/v1/accounts/2863675860
+  GET https://flw-afribank.cyclic.app/api/v1/accounts/8920655909
   ```
 
   - Sample Response:
@@ -96,11 +96,11 @@ Content-Type: application/json
     "status": "Fetched",
     "message": "Account Retrieved Successfully",
     "data": {
-      "accountName": "MUSTOPHA QOMORUDEEN",
-      "accountNumber": "2863675860",
-      "dob": "1995-10-28T00:00:00.000Z",
-      "accountType": "CURRENT",
-      "initialBalance": 5000
+      "accountName": "QOMORUDEEN MUSTOPHA",
+      "accountNumber": "8920655909",
+      "dob": "1978-10-16T00:00:00.000Z",
+      "accountType": "SAVINGS",
+      "initialBalance": 16000
     }
   }
   ```
@@ -124,18 +124,25 @@ Content-Type: application/json
     "status": "Accounts Retrieved Successfully",
     "data": [
       {
-        "accountName": "MUSTOPHA QOMORUDEEN",
-        "accountNumber": "2863675860",
-        "dob": "1995-10-28T00:00:00.000Z",
-        "accountType": "CURRENT",
+        "accountName": "OMOLARA AYOOLA",
+        "accountNumber": "3323171373",
+        "dob": "1985-07-20T00:00:00.000Z",
+        "accountType": "SAVINGS",
         "initialBalance": 5000
       },
       {
-        "accountName": "ADEWUMI AYOMIDE",
-        "accountNumber": "9410709344",
-        "dob": "2000-05-15T00:00:00.000Z",
+        "accountName": "ADEWUMI AYOMIDE ",
+        "accountNumber": "7997451249",
+        "dob": "1978-10-16T00:00:00.000Z",
         "accountType": "SAVINGS",
-        "initialBalance": 5000
+        "initialBalance": 16000
+      },
+      {
+        "accountName": "QOMORUDEEN MUSTOPHA",
+        "accountNumber": "8920655909",
+        "dob": "1978-10-16T00:00:00.000Z",
+        "accountType": "SAVINGS",
+        "initialBalance": 16000
       }
     ]
   }
