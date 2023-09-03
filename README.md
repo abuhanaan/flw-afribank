@@ -12,7 +12,7 @@ The following steps are to be followed to set up the web server locally
 
 ## API Reference/Documentation
 
-- Baseurl: https://flw-afribank.cyclic.app
+- Baseurl: https://flw-afribank.cyclic.app/api/v1
 
 ---
 
@@ -49,7 +49,7 @@ The API will return these error types when requests fail:
 - Sample Request:
 
 ```json
-POST https://flw-afribank.cyclic.app/accounts
+POST https://flw-afribank.cyclic.app/api/v1/accounts
 Content-Type: application/json
 
 {
